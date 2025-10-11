@@ -1,10 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
 import { Calendar, Clock, User, ArrowRight } from 'lucide-react';
 import { mockData } from '../mock';
+import { Link } from 'react-router-dom';
+import { toast } from '../hooks/use-toast';
 
 const Blog = () => {
+  const [email, setEmail] = useState('');
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    
+    if (!email) {
+      toast({
+        title: 'Error',
+        description: 'Please enter your email address',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast({
+        title: 'Invalid Email',
+        description: 'Please enter a valid email address',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    // Mock newsletter subscription
+    console.log('Newsletter subscription:', email);
+    
+    toast({
+      title: 'Successfully Subscribed!',
+      description: 'Thank you for subscribing to our newsletter. You\'ll receive the latest insights in your inbox.',
+    });
+
+    // Reset form
+    setEmail('');
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero */}
@@ -70,12 +110,14 @@ const Blog = () => {
                         year: 'numeric'
                       })}
                     </div>
-                    <Button
-                      variant="ghost"
-                      className="text-teal-600 hover:text-teal-700 hover:bg-teal-50 p-0"
-                    >
-                      Read More <ArrowRight className="ml-1" size={16} />
-                    </Button>
+                    <Link to={`/blog/${post.id}`}>
+                      <Button
+                        variant="ghost"
+                        className="text-teal-600 hover:text-teal-700 hover:bg-teal-50 p-0"
+                      >
+                        Read More <ArrowRight className="ml-1" size={16} />
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
@@ -92,16 +134,21 @@ const Blog = () => {
             <p className="text-gray-600 text-lg mb-8">
               Get the latest insights delivered straight to your inbox
             </p>
-            <div className="flex gap-4 max-w-md mx-auto">
-              <input
+            <form onSubmit={handleNewsletterSubmit} className="flex gap-4 max-w-md mx-auto">
+              <Input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-teal-600 focus:outline-none"
               />
-              <Button className="bg-teal-600 hover:bg-teal-700 text-white px-6">
+              <Button 
+                type="submit"
+                className="bg-teal-600 hover:bg-teal-700 text-white px-6 transition-all duration-300 hover:scale-105"
+              >
                 Subscribe
               </Button>
-            </div>
+            </form>
           </div>
         </div>
       </section>
