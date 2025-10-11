@@ -80,12 +80,14 @@ const Portfolio = () => {
                   <p className="text-gray-600 mb-4">{item.description}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-2xl font-bold text-teal-600">{item.results}</span>
-                    <Button
-                      variant="ghost"
-                      className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-                    >
-                      View Case Study <ArrowRight className="ml-2" size={16} />
-                    </Button>
+                    <Link to={`/portfolio/${item.id}`}>
+                      <Button
+                        variant="ghost"
+                        className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
+                      >
+                        View Case Study <ArrowRight className="ml-2" size={16} />
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
