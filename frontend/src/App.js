@@ -9,6 +9,7 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import { Toaster } from './components/ui/sonner';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
+        <Toaster />
       </div>
     </BrowserRouter>
   );
