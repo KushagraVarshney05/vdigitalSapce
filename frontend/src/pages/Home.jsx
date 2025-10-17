@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, TrendingUp, Users, Target, Zap } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
-import { mockData } from '../mock';
+import { companyData, servicesData, statsData, contentData } from '../mock-data';
 import * as Icons from 'lucide-react';
 
 const Home = () => {
@@ -25,17 +25,17 @@ const Home = () => {
             <div className="space-y-8 slide-in-left">
               <div className="inline-block">
                 <span className="px-4 py-2 bg-teal-600/20 text-teal-400 rounded-full text-sm font-semibold">
-                  Digital Marketing Excellence
+                  {contentData.home.hero.badge}
                 </span>
               </div>
               <h1 className="text-5xl md:text-7xl font-bold text-white serif-font leading-tight">
-                Grow Your
+                {contentData.home.hero.mainTitle}
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">
-                  Digital Presence
+                  {contentData.home.hero.highlightTitle}
                 </span>
               </h1>
               <p className="text-xl text-gray-300 leading-relaxed">
-                {mockData.company.description}
+                {contentData.home.hero.description}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/contact">
@@ -43,7 +43,7 @@ const Home = () => {
                     size="lg"
                     className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-6 text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-teal-600/50"
                   >
-                    Get Started <ArrowRight className="ml-2" />
+                    {contentData.home.hero.cta.primary} <ArrowRight className="ml-2" />
                   </Button>
                 </Link>
                 <Link to="/services">
@@ -52,14 +52,14 @@ const Home = () => {
                     variant="outline"
                     className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-6 text-lg transition-all duration-300"
                   >
-                    Our Services
+                    {contentData.home.hero.cta.secondary}
                   </Button>
                 </Link>
               </div>
 
               {/* Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
-                {mockData.stats.map((stat, index) => (
+                {statsData.map((stat, index) => (
                   <div key={index} className="text-center">
                     <div className="text-3xl font-bold text-teal-400">{stat.value}</div>
                     <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
@@ -115,15 +115,15 @@ const Home = () => {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 fade-in">
-            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">Our Services</span>
-            <h2 className="text-4xl md:text-5xl font-bold mt-4 serif-font">What We Do Best</h2>
+            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">{contentData.home.services.title}</span>
+            <h2 className="text-4xl md:text-5xl font-bold mt-4 serif-font">{contentData.home.services.subtitle}</h2>
             <p className="text-gray-600 text-lg mt-4 max-w-2xl mx-auto">
-              Comprehensive digital marketing solutions tailored to your business goals
+              {contentData.home.services.description}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mockData.services.map((service, index) => {
+            {servicesData.map((service, index) => {
               const IconComponent = Icons[service.icon];
               return (
                 <Card

@@ -6,6 +6,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { toast } from '../hooks/use-toast';
+import { servicesData, companyData, faqData, contentData } from '../mock-data';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -26,13 +27,13 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Mock form submission
     console.log('Form submitted:', formData);
-    
+
     toast({
-      title: 'Message Sent!',
-      description: 'Thank you for contacting us. We\'ll get back to you soon.',
+      title: contentData.contact.form.submitButton.successTitle,
+      description: contentData.contact.form.submitButton.successDescription,
     });
 
     // Reset form
@@ -53,10 +54,10 @@ const Contact = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center fade-in">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 serif-font">
-              Let's Work Together
+              {contentData.contact.hero.title}
             </h1>
             <p className="text-xl text-gray-300">
-              Have a project in mind? We'd love to hear from you.
+              {contentData.contact.hero.subtitle}
             </p>
           </div>
         </div>
@@ -68,10 +69,10 @@ const Contact = () => {
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold mb-6 serif-font">Send Us a Message</h2>
+              <h2 className="text-3xl font-bold mb-6 serif-font">{contentData.contact.form.title}</h2>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <Label htmlFor="name">Full Name *</Label>
+                  <Label htmlFor="name">{contentData.contact.form.fields.name.label}</Label>
                   <Input
                     id="name"
                     name="name"
@@ -80,12 +81,12 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className="mt-2"
-                    placeholder="John Doe"
+                    placeholder={contentData.contact.form.fields.name.placeholder}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="email">Email Address *</Label>
+                  <Label htmlFor="email">{contentData.contact.form.fields.email.label}</Label>
                   <Input
                     id="email"
                     name="email"
@@ -94,12 +95,12 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="mt-2"
-                    placeholder="john@example.com"
+                    placeholder={contentData.contact.form.fields.email.placeholder}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label htmlFor="phone">{contentData.contact.form.fields.phone.label}</Label>
                   <Input
                     id="phone"
                     name="phone"
@@ -107,12 +108,12 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className="mt-2"
-                    placeholder="+1 (555) 123-4567"
+                    placeholder={contentData.contact.form.fields.phone.placeholder}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="company">Company Name</Label>
+                  <Label htmlFor="company">{contentData.contact.form.fields.company.label}</Label>
                   <Input
                     id="company"
                     name="company"
@@ -120,12 +121,12 @@ const Contact = () => {
                     value={formData.company}
                     onChange={handleChange}
                     className="mt-2"
-                    placeholder="Your Company"
+                    placeholder={contentData.contact.form.fields.company.placeholder}
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="service">Service Interested In</Label>
+                  <Label htmlFor="service">{contentData.contact.form.fields.service.label}</Label>
                   <select
                     id="service"
                     name="service"
@@ -133,18 +134,17 @@ const Contact = () => {
                     onChange={handleChange}
                     className="w-full mt-2 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-600"
                   >
-                    <option value="">Select a service</option>
-                    <option value="seo">SEO & Content Marketing</option>
-                    <option value="social">Social Media Marketing</option>
-                    <option value="ppc">PPC & Paid Advertising</option>
-                    <option value="brand">Brand Strategy & Design</option>
-                    <option value="email">Email Marketing</option>
-                    <option value="analytics">Analytics & Insights</option>
+                    <option value="">{contentData.contact.form.fields.service.placeholder}</option>
+                    {servicesData.map((service) => (
+                      <option key={service.id} value={service.value}>
+                        {service.title}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
                 <div>
-                  <Label htmlFor="message">Your Message *</Label>
+                  <Label htmlFor="message">{contentData.contact.form.fields.message.label}</Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -153,7 +153,7 @@ const Contact = () => {
                     onChange={handleChange}
                     className="mt-2"
                     rows={6}
-                    placeholder="Tell us about your project..."
+                    placeholder={contentData.contact.form.fields.message.placeholder}
                   />
                 </div>
 
@@ -162,16 +162,16 @@ const Contact = () => {
                   size="lg"
                   className="w-full bg-teal-600 hover:bg-teal-700 text-white transition-all duration-300 hover:scale-105"
                 >
-                  Send Message <Send className="ml-2" size={18} />
+                  {contentData.contact.form.submitButton.text} <Send className="ml-2" size={18} />
                 </Button>
               </form>
             </div>
 
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold mb-6 serif-font">Get in Touch</h2>
+              <h2 className="text-3xl font-bold mb-6 serif-font">{contentData.contact.info.title}</h2>
               <p className="text-gray-600 text-lg mb-8">
-                We're here to answer your questions and discuss how we can help grow your business.
+                {contentData.contact.info.subtitle}
               </p>
 
               <div className="space-y-6 mb-12">
@@ -181,9 +181,9 @@ const Contact = () => {
                       <Mail className="w-6 h-6 text-teal-600" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-lg mb-1">Email Us</h4>
-                      <p className="text-gray-600">hello@vdigitalspace.com</p>
-                      <p className="text-gray-600">support@vdigitalspace.com</p>
+                      <h4 className="font-bold text-lg mb-1">{contentData.contact.info.cards.email.title}</h4>
+                      <p className="text-gray-600">{companyData.contact.email.primary}</p>
+                      <p className="text-gray-600">{companyData.contact.email.support}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -194,9 +194,9 @@ const Contact = () => {
                       <Phone className="w-6 h-6 text-teal-600" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-lg mb-1">Call Us</h4>
-                      <p className="text-gray-600">+1 (555) 123-4567</p>
-                      <p className="text-gray-600">Mon-Fri, 9am-6pm EST</p>
+                      <h4 className="font-bold text-lg mb-1">{contentData.contact.info.cards.phone.title}</h4>
+                      <p className="text-gray-600">{companyData.contact.phone.number}</p>
+                      <p className="text-gray-600">{companyData.contact.phone.hours}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -207,9 +207,9 @@ const Contact = () => {
                       <MapPin className="w-6 h-6 text-teal-600" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-lg mb-1">Visit Us</h4>
-                      <p className="text-gray-600">123 Marketing Street</p>
-                      <p className="text-gray-600">Digital City, DC 10001</p>
+                      <h4 className="font-bold text-lg mb-1">{contentData.contact.info.cards.address.title}</h4>
+                      <p className="text-gray-600">{companyData.contact.address.street}</p>
+                      <p className="text-gray-600">{companyData.contact.address.city}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -231,31 +231,14 @@ const Contact = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12 serif-font">
-              Frequently Asked Questions
+              {contentData.contact.faq.title}
             </h2>
             <div className="space-y-6">
-              {[
-                {
-                  q: 'What services do you offer?',
-                  a: 'We offer a full range of digital marketing services including SEO, content marketing, social media management, PPC advertising, brand strategy, email marketing, and analytics.'
-                },
-                {
-                  q: 'How long does it take to see results?',
-                  a: 'Most clients see initial improvements within 30-60 days, with significant results typically appearing within 3-6 months. Timeline varies based on your industry and specific goals.'
-                },
-                {
-                  q: 'Do you work with small businesses?',
-                  a: 'Yes! We work with businesses of all sizes, from startups to enterprises. We tailor our strategies to fit your specific needs and budget.'
-                },
-                {
-                  q: 'What is your pricing structure?',
-                  a: 'Our pricing is customized based on your specific needs and goals. Contact us for a personalized quote based on the services you require.'
-                }
-              ].map((faq, index) => (
-                <Card key={index} className="hover:shadow-lg transition-all duration-300">
+              {faqData.map((faq) => (
+                <Card key={faq.id} className="hover:shadow-lg transition-all duration-300">
                   <CardContent className="p-6">
-                    <h4 className="font-bold text-lg mb-2">{faq.q}</h4>
-                    <p className="text-gray-600">{faq.a}</p>
+                    <h4 className="font-bold text-lg mb-2">{faq.question}</h4>
+                    <p className="text-gray-600">{faq.answer}</p>
                   </CardContent>
                 </Card>
               ))}

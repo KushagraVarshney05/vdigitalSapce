@@ -11,12 +11,14 @@ import BlogDetail from './pages/BlogDetail';
 import Contact from './pages/Contact';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import { Toaster } from './components/ui/sonner';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        <ScrollToTop />
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
