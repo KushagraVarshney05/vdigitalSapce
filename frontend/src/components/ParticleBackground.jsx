@@ -36,7 +36,8 @@ const ParticleBackground = ({
         if (config) {
             return config;
         }
-        return particlePresets[preset] || particlePresets.default;
+        //returning always defauklt
+        return particlePresets.default;
     }, [preset, config]);
 
     return (
@@ -54,7 +55,9 @@ const ParticleBackground = ({
                     width: '100%',
                     height: '100%',
                     zIndex: interactive ? 1 : 0,
-                    pointerEvents: interactive ? 'auto' : 'none'
+                    pointerEvents: interactive ? 'auto' : 'none',
+                    WebkitTransform: 'translateZ(0)', // Safari hardware acceleration
+                    transform: 'translateZ(0)'
                 }}
             />
         </div>
