@@ -2,13 +2,17 @@ import React from 'react';
 import { Card, CardContent } from '../components/ui/card';
 import { Target, Users, Award, TrendingUp } from 'lucide-react';
 import { teamData, statsData, contentData } from '../mock-data';
+import ParticleBackground from '../components/ParticleBackground';
 
 const About = () => {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto px-6">
+      <section className="particles-hero relative pt-32 pb-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        {/* Particle Background */}
+        <ParticleBackground preset="subtle" id="about-particles" />
+
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center fade-in">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 serif-font">
               {contentData.about.hero.title}

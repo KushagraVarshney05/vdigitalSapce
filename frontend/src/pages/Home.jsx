@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, TrendingUp, Users, Target, Zap } from 'lucide
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { companyData, servicesData, statsData, contentData } from '../mock-data';
+import ParticleBackground from '../components/ParticleBackground';
 import * as Icons from 'lucide-react';
 
 const Home = () => {
@@ -17,9 +18,13 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Split Screen */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        <div className="container mx-auto px-6 py-20">
+      {/* Hero Section - Split Screen with Contained Particles */}
+      <section className="particles-hero hero-with-particles relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+
+        {/* ParticleBackground only for this section */}
+        <ParticleBackground preset="network" id="home-particles" interactive={true} />
+
+        <div className="hero-content container mx-auto px-6 py-20 relative" style={{ zIndex: 2 }}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Text Content */}
             <div className="space-y-8 slide-in-left">
@@ -73,9 +78,9 @@ const Home = () => {
               className="relative slide-in-right"
               style={{ transform: `translateY(${scrollY * 0.1}px)` }}
             >
-              <div className="relative w-full h-[600px]">
-                {/* Floating Cards */}
-                <Card className="absolute top-0 right-0 w-64 shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+              <div className="relative w-full h-[650px]">
+                {/* Floating Cards - Better positioned to avoid overlap */}
+                <Card className="absolute top-0 right-0 w-60 shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
                   <CardContent className="p-6">
                     <TrendingUp className="w-12 h-12 text-teal-600 mb-4" />
                     <h3 className="font-bold text-xl mb-2">300% Growth</h3>
@@ -83,7 +88,7 @@ const Home = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="absolute top-32 left-0 w-64 shadow-2xl hover:shadow-coral-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 delay-100">
+                <Card className="absolute top-48 left-0 w-60 shadow-2xl hover:shadow-coral-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 delay-100">
                   <CardContent className="p-6">
                     <Users className="w-12 h-12 text-coral-600 mb-4" />
                     <h3 className="font-bold text-xl mb-2">50M+ Reach</h3>
@@ -91,7 +96,7 @@ const Home = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="absolute bottom-20 right-12 w-64 shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 delay-200">
+                <Card className="absolute bottom-0 right-8 w-60 shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 delay-200">
                   <CardContent className="p-6">
                     <Target className="w-12 h-12 text-teal-600 mb-4" />
                     <h3 className="font-bold text-xl mb-2">ROI Focused</h3>
@@ -111,8 +116,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section className="py-24 bg-white">
+      {/* Services Section - Clear separation from hero */}
+      <section className="py-24 bg-white relative z-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 fade-in">
             <span className="text-teal-600 font-semibold text-sm uppercase tracking-wider">{contentData.home.services.title}</span>

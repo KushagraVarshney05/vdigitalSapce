@@ -3,6 +3,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { portfolioData, contentData } from '../mock-data';
+import ParticleBackground from '../components/ParticleBackground';
 import { Link } from 'react-router-dom';
 
 const Portfolio = () => {
@@ -17,8 +18,11 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto px-6">
+      <section className="particles-hero relative pt-32 pb-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        {/* Particle Background */}
+        <ParticleBackground preset="default" id="portfolio-particles" />
+
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center fade-in">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 serif-font">
               {contentData.portfolio.hero.title}
@@ -40,8 +44,8 @@ const Portfolio = () => {
                 onClick={() => setFilter(category)}
                 variant={filter === category ? 'default' : 'outline'}
                 className={`transition-all duration-300 ${filter === category
-                    ? 'bg-teal-600 hover:bg-teal-700 text-white'
-                    : 'hover:border-teal-600 hover:text-teal-600'
+                  ? 'bg-teal-600 hover:bg-teal-700 text-white'
+                  : 'hover:border-teal-600 hover:text-teal-600'
                   }`}
               >
                 {category}
