@@ -2,29 +2,33 @@ import React, { useState } from 'react';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { mockData } from '../mock';
+import { portfolioData, contentData } from '../mock-data';
+import ParticleBackground from '../components/ParticleBackground';
 import { Link } from 'react-router-dom';
 
 const Portfolio = () => {
-  const [filter, setFilter] = useState('All');
-  const categories = ['All', 'SaaS', 'E-commerce', 'Finance', 'Healthcare'];
+  const [filter, setFilter] = useState(contentData.portfolio.filters.all);
+  const categories = contentData.portfolio.filters.categories;
 
   const filteredPortfolio =
-    filter === 'All'
-      ? mockData.portfolio
-      : mockData.portfolio.filter((item) => item.category === filter);
+    filter === contentData.portfolio.filters.all
+      ? portfolioData
+      : portfolioData.filter((item) => item.category === filter);
 
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto px-6">
+      <section className="particles-hero relative pt-32 pb-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        {/* Particle Background */}
+        <ParticleBackground preset="default" id="portfolio-particles" />
+
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center fade-in">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 serif-font">
-              Our Success Stories
+              {contentData.portfolio.hero.title}
             </h1>
             <p className="text-xl text-gray-300">
-              Real results for real businesses
+              {contentData.portfolio.hero.subtitle}
             </p>
           </div>
         </div>
@@ -39,11 +43,10 @@ const Portfolio = () => {
                 key={category}
                 onClick={() => setFilter(category)}
                 variant={filter === category ? 'default' : 'outline'}
-                className={`transition-all duration-300 ${
-                  filter === category
-                    ? 'bg-teal-600 hover:bg-teal-700 text-white'
-                    : 'hover:border-teal-600 hover:text-teal-600'
-                }`}
+                className={`transition-all duration-300 ${filter === category
+                  ? 'bg-teal-600 hover:bg-teal-700 text-white'
+                  : 'hover:border-teal-600 hover:text-teal-600'
+                  }`}
               >
                 {category}
               </Button>
@@ -85,7 +88,7 @@ const Portfolio = () => {
                         variant="ghost"
                         className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
                       >
-                        View Case Study <ArrowRight className="ml-2" size={16} />
+                        {contentData.portfolioDetail.sections.overview} <ArrowRight className="ml-2" size={16} />
                       </Button>
                     </Link>
                   </div>
@@ -100,17 +103,17 @@ const Portfolio = () => {
       <section className="py-20 bg-gradient-to-br from-teal-600 to-cyan-600">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold text-white mb-6 serif-font">
-            Ready to Be Our Next Success Story?
+            {contentData.portfolio.cta.title}
           </h2>
           <p className="text-white/90 text-xl mb-8">
-            Let's discuss how we can help you achieve similar results
+            {contentData.portfolio.cta.subtitle}
           </p>
           <Link to="/contact">
             <Button
               size="lg"
               className="bg-white text-teal-600 hover:bg-gray-100 transition-all duration-300 hover:scale-105"
             >
-              Start Your Project <ArrowRight className="ml-2" />
+              {contentData.portfolio.cta.button} <ArrowRight className="ml-2" />
             </Button>
           </Link>
         </div>

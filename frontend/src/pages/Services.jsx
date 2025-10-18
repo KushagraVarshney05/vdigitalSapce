@@ -2,7 +2,8 @@ import React from 'react';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
-import { mockData } from '../mock';
+import { servicesData, contentData } from '../mock-data';
+import ParticleBackground from '../components/ParticleBackground';
 import { Link } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 
@@ -10,17 +11,20 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto px-6">
+      <section className="particles-hero relative pt-32 pb-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        {/* Particle Background */}
+        <ParticleBackground preset="subtle" id="services-particles" />
+
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center fade-in">
             <span className="px-4 py-2 bg-teal-600/20 text-teal-400 rounded-full text-sm font-semibold">
-              Our Services
+              {contentData.services.hero.badge}
             </span>
             <h1 className="text-5xl md:text-6xl font-bold mt-6 mb-6 serif-font">
-              Comprehensive Digital Marketing Solutions
+              {contentData.services.hero.title}
             </h1>
             <p className="text-xl text-gray-300">
-              From strategy to execution, we provide end-to-end digital marketing services that drive results
+              {contentData.services.hero.subtitle}
             </p>
           </div>
         </div>
@@ -30,16 +34,15 @@ const Services = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="space-y-20">
-            {mockData.services.map((service, index) => {
+            {servicesData.map((service, index) => {
               const IconComponent = Icons[service.icon];
               const isEven = index % 2 === 0;
-              
+
               return (
                 <div
                   key={service.id}
-                  className={`grid lg:grid-cols-2 gap-12 items-center ${
-                    isEven ? '' : 'lg:grid-flow-dense'
-                  }`}
+                  className={`grid lg:grid-cols-2 gap-12 items-center ${isEven ? '' : 'lg:grid-flow-dense'
+                    }`}
                 >
                   <div className={isEven ? '' : 'lg:col-start-2'}>
                     <Card className="hover:shadow-2xl transition-all duration-500">
@@ -49,7 +52,7 @@ const Services = () => {
                         </div>
                         <h2 className="text-3xl font-bold mb-4">{service.title}</h2>
                         <p className="text-gray-600 text-lg mb-6">{service.description}</p>
-                        
+
                         <div className="space-y-3 mb-8">
                           {service.features.map((feature, idx) => (
                             <div key={idx} className="flex items-center">
@@ -58,16 +61,16 @@ const Services = () => {
                             </div>
                           ))}
                         </div>
-                        
+
                         <Link to="/contact">
                           <Button className="bg-teal-600 hover:bg-teal-700 text-white transition-all duration-300 hover:scale-105">
-                            Learn More <ArrowRight className="ml-2" size={16} />
+                            {contentData.common.buttons.learnMore} <ArrowRight className="ml-2" size={16} />
                           </Button>
                         </Link>
                       </CardContent>
                     </Card>
                   </div>
-                  
+
                   <div className={isEven ? 'lg:col-start-2' : ''}>
                     <img
                       src={`https://images.unsplash.com/photo-${[
@@ -93,17 +96,17 @@ const Services = () => {
       <section className="py-20 bg-gradient-to-br from-teal-600 to-cyan-600">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold text-white mb-6 serif-font">
-            Ready to Get Started?
+            {contentData.services.cta.title}
           </h2>
           <p className="text-white/90 text-xl mb-8">
-            Let's create a customized marketing strategy for your business
+            {contentData.services.cta.subtitle}
           </p>
           <Link to="/contact">
             <Button
               size="lg"
               className="bg-white text-teal-600 hover:bg-gray-100 transition-all duration-300 hover:scale-105"
             >
-              Contact Us Today <ArrowRight className="ml-2" />
+              {contentData.services.cta.button} <ArrowRight className="ml-2" />
             </Button>
           </Link>
         </div>

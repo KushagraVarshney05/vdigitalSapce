@@ -3,21 +3,23 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { ArrowLeft, Calendar, Clock, User, Tag, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
-import { mockData } from '../mock';
+import { blogData, blogDetailsData, contentData, getBlogDetailsById } from '../mock-data';
+import { parse } from 'date-fns';
+import { get } from 'react-hook-form';
 
 const BlogDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const post = mockData.blog.find(p => p.id === parseInt(id));
+  const post = blogData.find(p => p.id === parseInt(id));
 
   if (!post) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Blog Post Not Found</h1>
+          <h1 className="text-4xl font-bold mb-4">{contentData.common.messages.noResults}</h1>
           <Link to="/blog">
             <Button className="bg-teal-600 hover:bg-teal-700">
-              Back to Blog
+              {contentData.blogDetail.navigation.back}
             </Button>
           </Link>
         </div>
@@ -25,64 +27,10 @@ const BlogDetail = () => {
     );
   }
 
-  // Mock full blog content
-  const fullContent = [
-    {
-      type: 'paragraph',
-      content: `In the rapidly evolving landscape of digital marketing, ${post.title.toLowerCase()} has become more critical than ever. As we navigate through 2025, businesses must adapt to new technologies and changing consumer behaviors to stay competitive.`
-    },
-    {
-      type: 'heading',
-      content: 'Understanding the Current Landscape'
-    },
-    {
-      type: 'paragraph',
-      content: 'The digital marketing ecosystem has undergone significant transformations in recent years. With the rise of artificial intelligence, machine learning, and advanced analytics, marketers now have unprecedented tools at their disposal to understand and engage with their audiences.'
-    },
-    {
-      type: 'paragraph',
-      content: 'However, with great power comes great responsibility. As these technologies become more sophisticated, so do consumer expectations. Today\'s audiences demand personalized, relevant, and timely content that speaks directly to their needs and interests.'
-    },
-    {
-      type: 'heading',
-      content: 'Key Strategies for Success'
-    },
-    {
-      type: 'list',
-      items: [
-        'Leverage data analytics to understand your audience deeply',
-        'Create authentic, value-driven content that resonates',
-        'Embrace emerging technologies while maintaining human connection',
-        'Build trust through transparency and consistency',
-        'Optimize for mobile-first experiences',
-        'Focus on long-term relationships over short-term gains'
-      ]
-    },
-    {
-      type: 'heading',
-      content: 'The Role of Technology'
-    },
-    {
-      type: 'paragraph',
-      content: 'Technology should be viewed as an enabler, not a replacement for human creativity and strategic thinking. The most successful digital marketing campaigns combine cutting-edge tools with compelling storytelling and genuine human insight.'
-    },
-    {
-      type: 'paragraph',
-      content: 'Automation can handle repetitive tasks and provide valuable data, but the interpretation of that data and the creation of meaningful strategies still requires human expertise and creativity.'
-    },
-    {
-      type: 'heading',
-      content: 'Looking Ahead'
-    },
-    {
-      type: 'paragraph',
-      content: 'As we move forward, the digital marketing landscape will continue to evolve. Staying informed, adaptable, and customer-focused will be key to success. Remember that at the heart of every successful campaign is a deep understanding of your audience and a commitment to delivering genuine value.'
-    },
-    {
-      type: 'paragraph',
-      content: 'Whether you\'re just starting your digital marketing journey or looking to refine your existing strategies, the principles remain the same: know your audience, provide value, and never stop learning.'
-    }
-  ];
+  // Mock full blog content - for demo purposes, we'll generate some content
+  // Import fullContent from mock-data based on blog post
+  const fullContent = getBlogDetailsById(post.id).fullContent;
+  console.log(fullContent);
 
   return (
     <div className="min-h-screen">
@@ -94,9 +42,9 @@ const BlogDetail = () => {
             onClick={() => navigate('/blog')}
             className="text-white hover:text-teal-400 mb-8"
           >
-            <ArrowLeft className="mr-2" /> Back to Blog
+            <ArrowLeft className="mr-2" /> {contentData.blogDetail.navigation.back}
           </Button>
-          
+
           <div className="max-w-4xl">
             <span className="px-4 py-2 bg-teal-600/20 text-teal-400 rounded-full text-sm font-semibold">
               {post.category}
@@ -104,7 +52,7 @@ const BlogDetail = () => {
             <h1 className="text-4xl md:text-5xl font-bold mt-6 mb-6 serif-font">
               {post.title}
             </h1>
-            
+
             <div className="flex flex-wrap items-center gap-6 text-gray-300">
               <div className="flex items-center">
                 <User size={18} className="mr-2" />
@@ -136,7 +84,7 @@ const BlogDetail = () => {
             <div className="relative overflow-hidden bg-gradient-to-br from-teal-500 to-cyan-500 rounded-2xl h-96 flex items-center justify-center shadow-2xl">
               <div className="text-center">
                 <span className="text-white text-9xl font-bold opacity-20">
-                  {post.category[0]}
+                  {post.category}
                 </span>
               </div>
             </div>
@@ -237,9 +185,9 @@ const BlogDetail = () => {
       {/* Related Posts */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-12 serif-font">Related Articles</h2>
+          <h2 className="text-4xl font-bold text-center mb-12 serif-font">{contentData.blogDetail.navigation.relatedPosts}</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {mockData.blog
+            {blogData
               .filter(p => p.id !== post.id)
               .slice(0, 3)
               .map((relatedPost) => (
@@ -261,7 +209,7 @@ const BlogDetail = () => {
                     <p className="text-gray-600 text-sm mb-4 line-clamp-2">{relatedPost.excerpt}</p>
                     <Link to={`/blog/${relatedPost.id}`}>
                       <Button variant="ghost" className="text-teal-600 hover:text-teal-700 p-0">
-                        Read More →
+                        {contentData.common.buttons.readMore} →
                       </Button>
                     </Link>
                   </CardContent>
@@ -275,17 +223,17 @@ const BlogDetail = () => {
       <section className="py-20 bg-gradient-to-br from-teal-600 to-cyan-600">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold text-white mb-6 serif-font">
-            Ready to Transform Your Digital Strategy?
+            {contentData.blogDetail.cta.title}
           </h2>
           <p className="text-white/90 text-xl mb-8">
-            Let's discuss how we can help you achieve your marketing goals
+            {contentData.blogDetail.cta.subtitle}
           </p>
           <Link to="/contact">
             <Button
               size="lg"
               className="bg-white text-teal-600 hover:bg-gray-100 transition-all duration-300 hover:scale-105"
             >
-              Get Started Today
+              {contentData.blogDetail.cta.button}
             </Button>
           </Link>
         </div>

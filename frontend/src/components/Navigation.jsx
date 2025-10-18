@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
+import { contentData } from '../mock-data';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,28 +18,26 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' }
+    { name: contentData.navigation.menu.home, path: '/' },
+    { name: contentData.navigation.menu.about, path: '/about' },
+    { name: contentData.navigation.menu.services, path: '/services' },
+    { name: contentData.navigation.menu.portfolio, path: '/portfolio' },
+    { name: contentData.navigation.menu.blog, path: '/blog' },
+    { name: contentData.navigation.menu.contact, path: '/contact' }
   ];
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg py-4' : 'bg-transparent py-6'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg py-4' : 'bg-transparent py-6'
+        }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
           <span
-            className={`text-2xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-teal-600' : 'text-white'
-            }`}
+            className={`text-2xl font-bold transition-colors duration-300 ${isScrolled ? 'text-teal-600' : 'text-white'
+              }`}
           >
-            VdigitalSpace
+            {contentData.navigation.logo}
           </span>
         </Link>
 
@@ -48,20 +47,19 @@ const Navigation = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`font-medium transition-colors duration-300 hover:text-teal-600 ${
-                location.pathname === link.path
+              className={`font-medium transition-colors duration-300 hover:text-teal-600 ${location.pathname === link.path
                   ? 'text-teal-600'
                   : isScrolled
-                  ? 'text-gray-800'
-                  : 'text-white'
-              }`}
+                    ? 'text-gray-800'
+                    : 'text-white'
+                }`}
             >
               {link.name}
             </Link>
           ))}
           <Link to="/contact">
             <Button className="bg-teal-600 hover:bg-teal-700 text-white transition-all duration-300 hover:scale-105">
-              Get Started
+              {contentData.navigation.cta}
             </Button>
           </Link>
         </div>
@@ -88,16 +86,15 @@ const Navigation = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`font-medium transition-colors duration-300 hover:text-teal-600 ${
-                  location.pathname === link.path ? 'text-teal-600' : 'text-gray-800'
-                }`}
+                className={`font-medium transition-colors duration-300 hover:text-teal-600 ${location.pathname === link.path ? 'text-teal-600' : 'text-gray-800'
+                  }`}
               >
                 {link.name}
               </Link>
             ))}
             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
               <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white">
-                Get Started
+                {contentData.navigation.cta}
               </Button>
             </Link>
           </div>

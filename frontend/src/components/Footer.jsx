@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { contentData, companyData } from '../mock-data';
 
 const Footer = () => {
   return (
@@ -9,9 +10,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold text-teal-500 mb-4">VdigitalSpace</h3>
+            <h3 className="text-2xl font-bold text-teal-500 mb-4">{contentData.navigation.logo}</h3>
             <p className="text-gray-400 mb-6">
-              Data-driven marketing solutions that transform brands and drive measurable growth.
+              {contentData.footer.tagline}
             </p>
             <div className="flex space-x-4">
               <a
@@ -43,31 +44,31 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4">{contentData.footer.sections.company.title}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-400 hover:text-teal-500 transition-colors duration-300">
-                  Home
+                  {contentData.navigation.menu.home}
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-gray-400 hover:text-teal-500 transition-colors duration-300">
-                  About Us
+                  {contentData.navigation.menu.about}
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-400 hover:text-teal-500 transition-colors duration-300">
-                  Services
+                  {contentData.navigation.menu.services}
                 </Link>
               </li>
               <li>
                 <Link to="/portfolio" className="text-gray-400 hover:text-teal-500 transition-colors duration-300">
-                  Portfolio
+                  {contentData.navigation.menu.portfolio}
                 </Link>
               </li>
               <li>
                 <Link to="/blog" className="text-gray-400 hover:text-teal-500 transition-colors duration-300">
-                  Blog
+                  {contentData.navigation.menu.blog}
                 </Link>
               </li>
             </ul>
@@ -75,38 +76,36 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Services</h4>
+            <h4 className="text-lg font-semibold mb-4">{contentData.footer.sections.services.title}</h4>
             <ul className="space-y-2">
-              <li className="text-gray-400">SEO & Content Marketing</li>
-              <li className="text-gray-400">Social Media Marketing</li>
-              <li className="text-gray-400">PPC & Paid Advertising</li>
-              <li className="text-gray-400">Brand Strategy</li>
-              <li className="text-gray-400">Email Marketing</li>
+              {contentData.footer.sections.services.links.map((service, index) => (
+                <li key={index} className="text-gray-400">{service}</li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
+            <h4 className="text-lg font-semibold mb-4">{contentData.navigation.menu.contact}</h4>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3">
                 <MapPin size={20} className="text-teal-500 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">123 Marketing Street, Digital City, DC 10001</span>
+                <span className="text-gray-400">{companyData.contact.address.street}, {companyData.contact.address.city}</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={20} className="text-teal-500 flex-shrink-0" />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
+                <span className="text-gray-400">{companyData.contact.phone.number}</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={20} className="text-teal-500 flex-shrink-0" />
-                <span className="text-gray-400">hello@vdigitalspace.com</span>
+                <span className="text-gray-400">{companyData.contact.email.primary}</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 VdigitalSpace. All rights reserved.</p>
+          <p>{contentData.footer.copyright}</p>
         </div>
       </div>
     </footer>
