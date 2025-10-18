@@ -2,11 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 import { contentData, companyData } from '../mock-data';
+import ParticleBackground from './ParticleBackground';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-6 py-16">
+    <footer className="particles-hero relative bg-gray-900 text-white overflow-hidden">
+      {/* Particle Background */}
+      <ParticleBackground preset="subtle" id="footer-particles" interactive={true} />
+
+      <div className="container mx-auto px-6 py-16 relative z-2">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>

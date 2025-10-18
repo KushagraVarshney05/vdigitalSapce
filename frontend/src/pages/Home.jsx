@@ -24,7 +24,7 @@ const Home = () => {
         {/* ParticleBackground only for this section */}
         <ParticleBackground preset="network" id="home-particles" interactive={true} />
 
-        <div className="hero-content container mx-auto px-6 py-20 relative" style={{ zIndex: 2 }}>
+        <div className="hero-content container mx-auto px-6 py-20 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Text Content */}
             <div className="space-y-8 slide-in-left">
@@ -78,9 +78,9 @@ const Home = () => {
               className="relative slide-in-right"
               style={{ transform: `translateY(${scrollY * 0.1}px)` }}
             >
-              <div className="relative w-full h-[650px]">
-                {/* Floating Cards - Better positioned to avoid overlap */}
-                <Card className="absolute top-0 right-0 w-60 shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+              <div className="relative w-full h-[600px]">
+                {/* Floating Cards */}
+                <Card className="absolute top-0 right-0 w-64 shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
                   <CardContent className="p-6">
                     <TrendingUp className="w-12 h-12 text-teal-600 mb-4" />
                     <h3 className="font-bold text-xl mb-2">300% Growth</h3>
@@ -88,7 +88,7 @@ const Home = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="absolute top-48 left-0 w-60 shadow-2xl hover:shadow-coral-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 delay-100">
+                <Card className="absolute top-32 left-0 w-64 shadow-2xl hover:shadow-coral-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 delay-100">
                   <CardContent className="p-6">
                     <Users className="w-12 h-12 text-coral-600 mb-4" />
                     <h3 className="font-bold text-xl mb-2">50M+ Reach</h3>
@@ -96,7 +96,7 @@ const Home = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="absolute bottom-0 right-8 w-60 shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 delay-200">
+                <Card className="absolute bottom-20 right-12 w-64 shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 delay-200">
                   <CardContent className="p-6">
                     <Target className="w-12 h-12 text-teal-600 mb-4" />
                     <h3 className="font-bold text-xl mb-2">ROI Focused</h3>

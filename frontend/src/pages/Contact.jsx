@@ -53,7 +53,7 @@ const Contact = () => {
       {/* Hero */}
       <section className="particles-hero relative pt-32 pb-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         {/* Particle Background */}
-        <ParticleBackground preset="default" id="contact-particles" />
+        <ParticleBackground preset="default" id="contact-particles" interactive={true} />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center fade-in">

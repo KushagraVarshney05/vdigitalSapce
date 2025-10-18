@@ -5,9 +5,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    pointer-events: none;
+    z-index: 0;
     overflow: hidden;
+    /* Fix for Safari rendering issues */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
 }
 
 .particles-canvas {
@@ -16,7 +20,26 @@
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    z-index: -1 !important;
+    z-index: 0 !important;
+}
+
+/* Interactive particles (allow mouse events) */
+.particles-container.interactive {
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.particles-container.interactive .particles-canvas {
+    pointer-events: auto !important;
+    z-index: 1 !important;
+}
+
+/* Non-interactive particles (block mouse events) */
+.particles-container:not(.interactive) {
+    pointer-events: none;
+}
+
+.particles-container:not(.interactive) .particles-canvas {
     pointer-events: none !important;
 }
 
@@ -24,25 +47,73 @@
 section.particles-hero {
     position: relative;
     overflow: hidden;
-    isolation: isolate;
+    /* Safari compatibility - avoid using isolation */
+    /* isolation: isolate; */
 }
 
-/* Ensure content stays above particles in any section */
+/* Content containers - allow mouse events to pass through */
 section .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    pointer-events: none; /* Allow mouse events to pass through to particles */
+}
+
+/* Make specific interactive elements clickable */
+section .container *,
+section .hero-content * {
+    pointer-events: auto; /* Re-enable mouse events for actual content */
 }
 
 /* Specific styling for hero sections */
 .hero-with-particles {
     position: relative;
     overflow: hidden;
-    isolation: isolate;
+    /* Safari compatibility - avoid using isolation */
+    /* isolation: isolate; */
+    -webkit-background-size: cover;
+    background-size: cover;
 }
 
 .hero-content {
     position: relative;
+    z-index: 2;
+    pointer-events: none; /* Allow mouse events to pass through to particles */
+}
+
+/* Footer specific fixes */
+footer.particles-hero .container {
+    pointer-events: none; /* Allow mouse events to pass through to particles */
+}
+
+footer.particles-hero .container * {
+    pointer-events: auto; /* Re-enable mouse events for footer content */
+}
+
+/* Force canvas positioning for cross-browser compatibility */
+canvas[data-generated] {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+}
+
+/* Interactive canvas */
+.particles-container.interactive canvas[data-generated] {
+    pointer-events: auto !important;
+    z-index: 1 !important;
+}
+
+/* Interactive particles container */
+.particles-container.interactive {
+    pointer-events: auto;
     z-index: 1;
+}
+
+/* Non-interactive canvas */
+.particles-container:not(.interactive) canvas[data-generated] {
+    pointer-events: none !important;
 }
 
 /* Individual particle canvas IDs for specific control */
@@ -51,20 +122,105 @@ section .container {
 #services-particles,
 #portfolio-particles,
 #blog-particles,
-#contact-particles {
+#contact-particles,
+#footer-particles {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
     z-index: 0 !important;
-    pointer-events: none !important;
     overflow: hidden !important;
 }
 
+/* Safari-specific fixes */
+@supports (-webkit-appearance: none) {
+    .particles-container {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+
+    .particles-canvas {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+
+/* Cross-browser compatibility fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+
+    .particles-container,
+    .particles-canvas {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Fix for older Safari versions */
+@supports not (isolation: isolate) {
+
+    .particles-hero,
+    .hero-with-particles {
+        /* Fallback for browsers that don't support isolation */
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+    }
+}
+
+/* Ensure smooth animations across browsers */
+.particles-container *,
+.particles-canvas * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 /* Ensure sections after particles have proper stacking context */
-section:has(.particles-container)+section {
+/* Replace :has() with class-based approach for Safari compatibility */
+.hero-with-particles+section,
+.particles-hero+section {
     position: relative;
     z-index: 10;
-    background: var(--background, white);
+    background: white;
+}
+
+/* Comprehensive pointer-events management for particle interactivity */
+
+/* All sections with particles: containers pass events through, content elements capture them */
+.particles-hero .container,
+.hero-with-particles .container,
+.hero-with-particles .hero-content {
+    pointer-events: none; /* Pass through to particles */
+}
+
+/* All actual content elements should capture mouse events */
+.particles-hero .container > *,
+.hero-with-particles .container > *,
+.hero-content > * {
+    pointer-events: auto; /* Individual elements are clickable */
+}
+
+/* Ensure buttons, links, inputs remain interactive */
+button, a, input, textarea, select, 
+.btn, .button, .link,
+[role="button"], [onclick] {
+    pointer-events: auto !important;
+}
+
+/* Ensure text content allows selection */
+h1, h2, h3, h4, h5, h6, p, span, div {
+    pointer-events: auto;
+}
+
+/* Cards and interactive components */
+.card, .Card, [class*="card"] {
+    pointer-events: auto;
+}
+
+/* Grid and layout containers that should pass events through */
+.grid, .flex, .space-y-8, .space-y-6, .space-y-4 {
+    pointer-events: none;
+}
+
+.grid > *, .flex > *, .space-y-8 > *, .space-y-6 > *, .space-y-4 > * {
+    pointer-events: auto;
 }
