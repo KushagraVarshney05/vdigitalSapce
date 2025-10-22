@@ -63,32 +63,32 @@ export const contentData = {
     // Home Page Content
     home: {
         hero: {
-            badge: "Digital Marketing Excellence",
-            mainTitle: "Grow Your",
+            badge: "Complete Digital Solutions",
+            mainTitle: "Transform Your",
             highlightTitle: "Digital Presence",
-            description: "We help businesses grow through strategic digital marketing, creative excellence, and measurable results that drive real success.",
+            description: "We provide comprehensive digital marketing and technical solutions including website development, email migration, SEO, social media marketing, Google Ads, Meta Ads, and more - serving businesses globally.",
             cta: {
                 primary: "Get Started",
                 secondary: "Our Services"
             }
         },
         stats: {
-            title: "Trusted by Growing Businesses"
+            title: "Trusted by Businesses Worldwide"
         },
         services: {
             title: "Our Services",
-            subtitle: "Comprehensive Digital Marketing Solutions",
-            description: "From SEO to social media, we provide end-to-end digital marketing services that drive results and grow your business.",
+            subtitle: "Complete Digital Marketing & Technical Solutions",
+            description: "From website development and migrations to SEO, social media marketing, and advertising campaigns - we offer end-to-end digital solutions for businesses across the globe.",
             cta: "View All Services"
         },
         portfolio: {
             title: "Success Stories",
-            subtitle: "Results That Speak for Themselves",
+            subtitle: "Global Results for Growing Businesses",
             cta: "View All Projects"
         },
         finalCta: {
-            title: "Ready to Grow Your Business?",
-            subtitle: "Let's discuss how our proven strategies can help you achieve your goals",
+            title: "Ready to Transform Your Digital Presence?",
+            subtitle: "Let's discuss how our comprehensive digital solutions can accelerate your business growth globally",
             button: "Start Your Project"
         }
     },
@@ -106,9 +106,9 @@ export const contentData = {
                 alt: "Our team"
             },
             paragraphs: [
-                "VdigitalSpace was founded with a simple mission: to help businesses thrive in the digital age. Over the past 15 years, we've grown from a small startup to a leading digital marketing agency, serving over 200 clients worldwide.",
-                "Our team of 45+ experts combines creative thinking with data-driven strategies to deliver exceptional results. We believe in transparent communication, measurable outcomes, and building long-term partnerships with our clients.",
-                "Whether you're a startup looking to establish your brand or an enterprise seeking to optimize your digital presence, we have the expertise and passion to help you succeed."
+                "Adsversa was founded with a comprehensive vision: to be the one-stop solution for all digital marketing and technical needs. Over the past decade, we've evolved into a full-service digital agency, helping 500+ businesses across the globe establish and grow their digital presence.",
+                "Our team of 60+ specialists spans web development, digital marketing, technical migrations, SEO experts, social media marketers, and advertising specialists. We combine technical expertise with creative marketing strategies to deliver complete digital solutions.",
+                "Whether you need website development, email migration, domain transfers, SEO optimization, social media marketing, Google Ads, Meta Ads, or any other digital service - we have the global expertise to help businesses of all sizes succeed online."
             ]
         },
         values: {
@@ -239,7 +239,7 @@ export const contentData = {
 
     // Navigation Menu
     navigation: {
-        logo: "VdigitalSpace",
+        logo: "Adsversa",
         menu: {
             home: "Home",
             about: "About",
@@ -253,7 +253,7 @@ export const contentData = {
 
     // Footer Content
     footer: {
-        tagline: "Transforming businesses through digital excellence",
+        tagline: "Complete digital marketing and technical solutions for businesses worldwide",
         sections: {
             company: {
                 title: "Company",
@@ -261,17 +261,17 @@ export const contentData = {
             },
             services: {
                 title: "Services",
-                links: ["SEO Marketing", "Social Media", "PPC Advertising", "Content Strategy"]
+                links: ["Website Development", "SEO & SMO", "Google & Meta Ads", "Email Migration"]
             },
             resources: {
                 title: "Resources",
-                links: ["Blog", "Case Studies", "Free Tools", "Support"]
+                links: ["Blog", "Case Studies", "Digital Tools", "Support"]
             }
         },
         social: {
             title: "Follow Us"
         },
-        copyright: "© 2025 VdigitalSpace. All rights reserved.",
+        copyright: "© 2025 Adsversa. All rights reserved.",
         legal: ["Privacy Policy", "Terms of Service"]
     },
 
