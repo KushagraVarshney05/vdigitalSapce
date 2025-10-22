@@ -1,50 +1,50 @@
 export const servicesData = [
     {
         id: 1,
+        title: 'Website Development',
+        description: 'Create stunning, responsive websites that convert visitors into customers with modern design and functionality.',
+        icon: 'Monitor',
+        features: ['Custom Web Development', 'Responsive Design', 'E-commerce Solutions', 'CMS Integration'],
+        value: 'web-development'
+    },
+    {
+        id: 2,
         title: 'SEO & Content Marketing',
-        description: 'Boost your search rankings with strategic SEO and compelling content that converts.',
+        description: 'Boost your search rankings and drive organic traffic with strategic SEO and compelling content.',
         icon: 'Search',
         features: ['Keyword Research', 'On-Page SEO', 'Content Strategy', 'Link Building'],
         value: 'seo'
     },
     {
-        id: 2,
-        title: 'Social Media Marketing',
-        description: 'Build engaged communities and amplify your brand across all social platforms.',
+        id: 3,
+        title: 'Social Media Marketing (SMO)',
+        description: 'Build engaged communities and amplify your brand across all social media platforms globally.',
         icon: 'Share2',
         features: ['Social Strategy', 'Content Creation', 'Community Management', 'Influencer Marketing'],
-        value: 'social'
-    },
-    {
-        id: 3,
-        title: 'PPC & Paid Advertising',
-        description: 'Maximize ROI with targeted campaigns across Google, Facebook, and beyond.',
-        icon: 'TrendingUp',
-        features: ['Campaign Setup', 'Ad Creative', 'Conversion Optimization', 'Performance Analytics'],
-        value: 'ppc'
+        value: 'social-media'
     },
     {
         id: 4,
-        title: 'Brand Strategy & Design',
-        description: 'Create memorable brand identities that resonate with your target audience.',
-        icon: 'Palette',
-        features: ['Brand Identity', 'Visual Design', 'Brand Guidelines', 'Messaging Strategy'],
-        value: 'brand'
+        title: 'Google Ads & PPC',
+        description: 'Maximize ROI with expertly managed Google Ads campaigns and pay-per-click advertising.',
+        icon: 'Target',
+        features: ['Campaign Setup', 'Keyword Optimization', 'Ad Copy Creation', 'Conversion Tracking'],
+        value: 'google-ads'
     },
     {
         id: 5,
-        title: 'Email Marketing',
-        description: 'Nurture leads and drive conversions with personalized email campaigns.',
-        icon: 'Mail',
-        features: ['Email Strategy', 'Automation', 'List Management', 'A/B Testing'],
-        value: 'email'
+        title: 'Meta Ads (Facebook & Instagram)',
+        description: 'Reach your target audience with highly effective Meta advertising campaigns across Facebook and Instagram.',
+        icon: 'Smartphone',
+        features: ['Audience Targeting', 'Creative Design', 'Campaign Optimization', 'Performance Analytics'],
+        value: 'meta-ads'
     },
     {
         id: 6,
-        title: 'Analytics & Insights',
-        description: 'Make data-driven decisions with comprehensive analytics and reporting.',
-        icon: 'BarChart3',
-        features: ['Data Analysis', 'Custom Reports', 'Performance Tracking', 'Growth Insights'],
-        value: 'analytics'
+        title: 'Email & Domain Migration',
+        description: 'Seamlessly migrate your email systems and domains with zero downtime and complete data integrity.',
+        icon: 'Mail',
+        features: ['Email Migration', 'Domain Transfer', 'DNS Management', 'Technical Support'],
+        value: 'migration'
     }
 ];
