@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 import { Card, CardContent } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -8,16 +9,25 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { toast } from '../hooks/use-toast';
 import { servicesData, companyData, faqData, contentData } from '../mock-data';
 import ParticleBackground from '../components/ParticleBackground';
+import { emailConfig } from '../config/emailConfig';
+import CountryCodeSelect from '../components/CountryCodeSelect';
 
+// Initialize EmailJS
+emailjs.init(emailConfig.publicKey);
+
+// Common country calling codes for dropdown
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    countryCode: '',
+    address: '',
     company: '',
     service: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -26,26 +36,57 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    // Mock form submission
-    console.log('Form submitted:', formData);
+    try {
 
-    toast({
-      title: contentData.contact.form.submitButton.successTitle,
-      description: contentData.contact.form.submitButton.successDescription,
-    });
+      const result = await emailjs.send(
+        emailConfig.serviceId,
+        emailConfig.templateId,
+        {
+          to_email: emailConfig.recipientEmail,
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          country_code: formData.countryCode || 'Not specified',
+          address: formData.address || 'Not specified',
+          company: formData.company,
+          service: formData.service || 'Not specified',
+          message: formData.message,
+          reply_to: formData.email
+        }
+      );
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      service: '',
-      message: ''
-    });
+      if (result.status === 200) {
+        toast({
+          title: contentData.contact.form.submitButton.successTitle,
+          description: contentData.contact.form.submitButton.successDescription,
+        });
+
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          countryCode: '',
+          address: '',
+          company: '',
+          service: '',
+          message: ''
+        });
+      }
+    } catch (error) {
+      console.error('Email send error:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to send message. Please try again or contact us directly.',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -117,6 +158,30 @@ const Contact = () => {
                 </div>
 
                 <div>
+                  <Label htmlFor="countryCode">Country Code</Label>
+                  <div className="mt-2">
+                    <CountryCodeSelect
+                      value={formData.countryCode}
+                      onChange={(code) => setFormData((prev) => ({ ...prev, countryCode: code }))}
+                      placeholder="Search and select country code"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label htmlFor="address">Address</Label>
+                  <Input
+                    id="address"
+                    name="address"
+                    type="text"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className="mt-2"
+                    placeholder="Street address, city, country"
+                  />
+                </div>
+
+                <div>
                   <Label htmlFor="company">{contentData.contact.form.fields.company.label}</Label>
                   <Input
                     id="company"
@@ -164,9 +229,11 @@ const Contact = () => {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full bg-teal-600 hover:bg-teal-700 text-white transition-all duration-300 hover:scale-105"
+                  disabled={isLoading}
+                  className="w-full bg-teal-600 hover:bg-teal-700 text-white transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {contentData.contact.form.submitButton.text} <Send className="ml-2" size={18} />
+                  {isLoading ? 'Sending...' : contentData.contact.form.submitButton.text}
+                  <Send className="ml-2" size={18} />
                 </Button>
               </form>
             </div>
