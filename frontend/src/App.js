@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import './styles/particles.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import posthog from 'posthog-js';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -14,6 +15,14 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import { Toaster } from './components/ui/sonner';
+
+// Initialize PostHog
+if (typeof window !== 'undefined') {
+  posthog.init('phc_PnF4YxwCuyryesG7dDcZqsdBcrQIjZlc3LbLyCfkfPH', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only',
+  });
+}
 
 function App() {
   return (

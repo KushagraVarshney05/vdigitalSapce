@@ -10,7 +10,7 @@ const Footer = () => {
       {/* Particle Background */}
       <ParticleBackground preset="subtle" id="footer-particles" interactive={true} />
 
-      <div className="container mx-auto px-6 py-16 relative z-2">
+      <div className="container mx-auto px-6 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
@@ -25,20 +25,20 @@ const Footer = () => {
               >
                 <Facebook size={18} />
               </a>
-              <a
+              {/* <a
                 href="#"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-teal-600 transition-colors duration-300"
               >
                 <Twitter size={18} />
-              </a>
+              </a> */}
               <a
-                href="#"
+                href="https://www.linkedin.com/company/adsversa"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-teal-600 transition-colors duration-300"
               >
                 <Linkedin size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/ads.versa/"
                 className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-teal-600 transition-colors duration-300"
               >
                 <Instagram size={18} />
