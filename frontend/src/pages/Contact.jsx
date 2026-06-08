@@ -254,7 +254,7 @@ const Contact = () => {
                     <div>
                       <h4 className="font-bold text-lg mb-1">{contentData.contact.info.cards.email.title}</h4>
                       <p className="text-gray-600">{companyData.contact.email.primary}</p>
-                      <p className="text-gray-600">{companyData.contact.email.support}</p>
+                      {/* <p className="text-gray-600">{companyData.contact.email.support}</p> */}
                     </div>
                   </CardContent>
                 </Card>

@@ -4,8 +4,7 @@ export const companyData = {
     description: 'We provide comprehensive digital marketing services and technical solutions including website development, migrations, SEO, social media marketing, and advertising campaigns worldwide.',
     contact: {
         email: {
-            primary: 'info@adsversa.com',
-            support: 'dev@adsversa.com'
+            primary: 'info@adsversa.com'
         },
         phone: {
             number: '+91 7078785103',
