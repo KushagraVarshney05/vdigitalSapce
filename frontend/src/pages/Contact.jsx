@@ -8,6 +8,7 @@ import { Label } from '../components/ui/label';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { toast } from '../hooks/use-toast';
 import { servicesData, companyData, faqData, contentData } from '../mock-data';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../components/ui/accordion';
 import ParticleBackground from '../components/ParticleBackground';
 import { emailConfig } from '../config/emailConfig';
 import CountryCodeSelect from '../components/CountryCodeSelect';
@@ -304,16 +305,22 @@ const Contact = () => {
             <h2 className="text-4xl font-bold text-center mb-12 serif-font">
               {contentData.contact.faq.title}
             </h2>
-            <div className="space-y-6">
-              {faqData.map((faq) => (
-                <Card key={faq.id} className="hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-6">
-                    <h4 className="font-bold text-lg mb-2">{faq.question}</h4>
-                    <p className="text-gray-600">{faq.answer}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <Card>
+              <CardContent className="p-6">
+                <Accordion type="single" collapsible className="w-full">
+                  {faqData.map((faq) => (
+                    <AccordionItem key={faq.id} value={`faq-${faq.id}`}>
+                      <AccordionTrigger className="text-base font-semibold hover:text-teal-600 hover:no-underline">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-gray-600 text-sm leading-relaxed">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

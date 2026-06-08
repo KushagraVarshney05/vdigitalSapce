@@ -11,8 +11,8 @@ export const companyData = {
             hours: '24/7 Support'
         },
         address: {
-            street: 'Greater Noida',
-            city: 'Ghaziabad, Uttar Pradesh 201318'
+            street: '12th floor, Galaxy Blue Sapphire Plaza',
+            city: 'Greater Noida, Uttar Pradesh 201318'
         }
     }
 };
