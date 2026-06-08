@@ -63,10 +63,10 @@ export const contentData = {
     // Home Page Content
     home: {
         hero: {
-            badge: "Complete Digital Solutions",
-            mainTitle: "Transform Your",
-            highlightTitle: "Digital Presence",
-            description: "We provide comprehensive digital marketing and technical solutions including website development, email migration, SEO, social media marketing, Google Ads, Meta Ads, and more - serving businesses globally.",
+            badge: "AI Data Services & Digital Marketing",
+            mainTitle: "Build Smarter with",
+            highlightTitle: "AI & Digital Solutions",
+            description: "We provide end-to-end AI data collection, annotation, and validation services alongside comprehensive digital marketing solutions — helping businesses, startups, and research teams build reliable AI models and grow their online presence globally.",
             cta: {
                 primary: "Get Started",
                 secondary: "Our Services"
@@ -77,8 +77,8 @@ export const contentData = {
         },
         services: {
             title: "Our Services",
-            subtitle: "Complete Digital Marketing & Technical Solutions",
-            description: "From website development and migrations to SEO, social media marketing, and advertising campaigns - we offer end-to-end digital solutions for businesses across the globe.",
+            subtitle: "AI Data Services & Digital Marketing Solutions",
+            description: "From AI data collection, annotation, and dataset validation to website development, SEO, social media marketing, and advertising campaigns — we offer end-to-end solutions for businesses and AI teams across the globe.",
             cta: "View All Services"
         },
         portfolio: {
@@ -106,9 +106,9 @@ export const contentData = {
                 alt: "Our team"
             },
             paragraphs: [
-                "Adsversa was founded with a comprehensive vision: to be the one-stop solution for all digital marketing and technical needs. Over the past decade, we've evolved into a full-service digital agency, helping 500+ businesses across the globe establish and grow their digital presence.",
-                "Our team of 60+ specialists spans web development, digital marketing, technical migrations, SEO experts, social media marketers, and advertising specialists. We combine technical expertise with creative marketing strategies to deliver complete digital solutions.",
-                "Whether you need website development, email migration, domain transfers, SEO optimization, social media marketing, Google Ads, Meta Ads, or any other digital service - we have the global expertise to help businesses of all sizes succeed online."
+                "Adsversa operates at the intersection of AI data services and digital marketing. We specialize in end-to-end AI data collection, annotation, and validation — helping businesses, startups, and research institutions build accurate, production-ready datasets for machine learning, computer vision, and NLP applications.",
+                "Beyond AI data operations, our team of 60+ specialists delivers comprehensive digital marketing solutions including web development, SEO, social media marketing, and paid advertising. We combine technical AI expertise with creative marketing strategies to serve clients across the globe.",
+                "Whether you need custom image datasets, multilingual speech data, bounding box annotation, participant recruitment, or a full digital marketing campaign — we have the global expertise and operational scale to deliver."
             ]
         },
         values: {
@@ -145,17 +145,17 @@ export const contentData = {
     // Services Page Content
     services: {
         hero: {
-            badge: "Our Services",
-            title: "Comprehensive Digital Marketing Solutions",
-            subtitle: "From strategy to execution, we provide end-to-end digital marketing services that drive results"
+            badge: "AI & Digital Services",
+            title: "AI Data Services & Digital Marketing",
+            subtitle: "From AI data collection and annotation pipelines to full-scale digital marketing — we deliver end-to-end solutions that power intelligent products and business growth"
         },
         intro: {
             title: "Everything You Need to Succeed Online",
-            description: "Our full-service digital marketing approach ensures all aspects of your online presence work together to drive growth and achieve your business objectives."
+            description: "Our full-service approach combines real AI data operations with proven digital marketing strategies to help businesses build smarter products and grow their online presence."
         },
         cta: {
             title: "Ready to Get Started?",
-            subtitle: "Let's create a customized marketing strategy for your business",
+            subtitle: "Let's create a customized AI data or marketing strategy for your business",
             button: "Contact Us Today"
         }
     },
@@ -253,7 +253,7 @@ export const contentData = {
 
     // Footer Content
     footer: {
-        tagline: "Complete digital marketing and technical solutions for businesses worldwide",
+        tagline: "AI data services and digital marketing solutions for businesses and AI teams worldwide",
         sections: {
             company: {
                 title: "Company",
@@ -261,7 +261,7 @@ export const contentData = {
             },
             services: {
                 title: "Services",
-                links: ["Website Development", "SEO & SMO", "Google & Meta Ads", "Email Migration"]
+                links: ["AI Data Collection", "Data Annotation", "Dataset Validation", "Digital Marketing"]
             },
             resources: {
                 title: "Resources",
